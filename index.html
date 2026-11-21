@@ -1,0 +1,474 @@
+<!doctype html>
+<html lang="en" suppresshydrationwarning>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem('hs_theme');
+          var theme =
+            saved === 'dark' || saved === 'light'
+              ? saved
+              : window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+              ? 'dark'
+              : 'light';
+          document.documentElement.setAttribute('data-theme', theme);
+          document.documentElement.classList.remove('dark');
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'light');
+        }
+      })();
+    </script>
+    <style>
+      html[data-theme='light'],
+      html[data-theme='light'] body {
+        background-color: #e4d6c3;
+        color: #14100b;
+        color-scheme: light;
+      }
+      html[data-theme='dark'],
+      html[data-theme='dark'] body {
+        background-color: #120e0a;
+        color: #f0e6d8;
+        color-scheme: dark;
+      }
+    </style>
+    <title>Hot &amp; Spicy - Restaurant, Cafe &amp; Gaming Lounge</title>
+    <meta
+      name="description"
+      content="Premier dining, cafe culture, and gaming lounge featuring signature tandoori combos, gourmet pizzas, 8-ball pool, and 4K PS5 arenas in Bansberia, Hooghly."
+    />
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="Hot &amp; Spicy, Bansberia" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#E4D6C3" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#120E0A" />
+    <link rel="canonical" href="https://hotandspicybansberia.in/" />
+    <link
+      rel="preload"
+      as="video"
+      type="video/mp4"
+      href="/assets/aistudio/959372878_1794748712599853_fb2c151f.mp4"
+    />
+
+    <!-- OpenGraph Social Share Metadata -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Hot &amp; Spicy" />
+    <meta property="og:locale" content="en_IN" />
+    <meta property="og:url" content="https://hotandspicybansberia.in/" />
+    <meta property="og:title" content="Hot &amp; Spicy - Restaurant, Cafe &amp; Gaming Lounge" />
+    <meta
+      property="og:description"
+      content="Premier dining, cafe culture, and gaming lounge featuring signature tandoori combos, gourmet pizzas, 8-ball pool, and 4K PS5 arenas in Bansberia, Hooghly."
+    />
+    <meta property="og:image" content="https://hotandspicybansberia.in/og-share.jpg" />
+    <meta property="og:image:secure_url" content="https://hotandspicybansberia.in/og-share.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1376" />
+    <meta property="og:image:height" content="768" />
+    <meta
+      property="og:image:alt"
+      content="Hot &amp; Spicy dining lounge, charcoal tandoor kitchen, and cafe at Boropara More, Dingalhat, Near Azdan Moto Hub, Bansberia"
+    />
+    <meta property="og:image" content="https://hotandspicybansberia.in/og-lounge.jpg" />
+    <meta property="og:image:secure_url" content="https://hotandspicybansberia.in/og-lounge.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="896" />
+    <meta
+      property="og:image:alt"
+      content="8-Ball Championship Pool table and PlayStation 5 arena at Hot &amp; Spicy Bansberia"
+    />
+
+    <!-- Twitter / X Social Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Hot &amp; Spicy - Restaurant, Cafe &amp; Gaming Lounge" />
+    <meta
+      name="twitter:description"
+      content="Premier dining, cafe culture, and gaming lounge featuring signature tandoori combos, gourmet pizzas, 8-ball pool, and 4K PS5 arenas in Bansberia, Hooghly."
+    />
+    <meta name="twitter:image" content="https://hotandspicybansberia.in/og-share.jpg" />
+    <meta
+      name="twitter:image:alt"
+      content="Hot &amp; Spicy dining lounge, charcoal tandoor kitchen, and cafe at Boropara More, Dingalhat, Near Azdan Moto Hub, Bansberia"
+    />
+
+    <!-- Schema.org Structured Data -->
+    <script id="hs-restaurant-schema" type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Restaurant",
+        "@id": "https://hotandspicybansberia.in/#restaurant",
+        "name": "Hot & Spicy",
+        "description": "Premier dining, cafe culture, and 18+ gaming lounge featuring signature tandoori combos, gourmet pizzas, 8-ball pool, and 4K PS5 arenas in Bansberia, Hooghly.",
+        "url": "https://hotandspicybansberia.in/",
+        "image": [
+          "https://hotandspicybansberia.in/og-share.jpg",
+          "https://hotandspicybansberia.in/og-lounge.jpg"
+        ],
+        "telephone": "+917605857713",
+        "servesCuisine": ["Indian", "Tandoori", "Chinese", "Cafe", "Pizza"],
+        "priceRange": "₹₹",
+        "openingHours": "Mo-Su 13:30-22:00",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Boropara More, Dingalhat, Near Azdan Moto Hub",
+          "addressLocality": "Bansberia",
+          "addressRegion": "WB",
+          "postalCode": "712502",
+          "addressCountry": "IN"
+        },
+        "sameAs": [
+          "https://www.youtube.com/@Hotandspicyaa",
+          "https://www.instagram.com/hotandspicy_aa",
+          "https://www.facebook.com/profile.php?id=61594005043419"
+        ],
+        "hasMenu": {
+          "@type": "Menu",
+          "name": "Hot & Spicy Kitchen & Cafe Menu",
+          "url": "https://hotandspicybansberia.in/#book-menu",
+          "inLanguage": "en-IN",
+          "hasMenuSection": [
+            {
+              "@type": "MenuSection",
+              "name": "Momos & Starters",
+              "description": "Handcrafted dumplings & wok starters",
+              "hasMenuItem": [
+                {
+                  "@type": "MenuItem",
+                  "@id": "https://hotandspicybansberia.in/#menu-item-bm-1",
+                  "name": "Spicy Momo Fiesta (8 Pcs)",
+                  "description": "Steamed or pan-crisped dumplings with roasted chilli garlic dip.",
+                  "image": "https://hotandspicybansberia.in/api/images/transform?src=src/assets/images/menu_spicy_momos_1794548027720.jpg&w=640&format=jpeg",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "299",
+                    "priceCurrency": "INR",
+                    "availability": "https://schema.org/InStock"
+                  }
+                },
+                {
+                  "@type": "MenuItem",
+                  "@id": "https://hotandspicybansberia.in/#menu-item-bm-2",
+                  "name": "Crispy Dragon Chicken",
+                  "description": "Wok-tossed chicken strips, dried red chillies, and crunchy cashews.",
+                  "image": "https://hotandspicybansberia.in/api/images/transform?src=src/assets/images/menu_hakka_noodles_1794548028123.jpg&w=640&format=jpeg",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "250",
+                    "priceCurrency": "INR",
+                    "availability": "https://schema.org/InStock"
+                  }
+                },
+                {
+                  "@type": "MenuItem",
+                  "@id": "https://hotandspicybansberia.in/#menu-item-bm-3",
+                  "name": "Pan-Fried Schezwan Momos",
+                  "description": "Crisp-bottom veg dumplings glazed in fierce house schezwan sauce.",
+                  "image": "https://hotandspicybansberia.in/api/images/transform?src=src/assets/images/menu_spicy_momos_1794548027720.jpg&w=640&format=jpeg",
+                  "suitableForDiet": "https://schema.org/VegetarianDiet",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "180",
+                    "priceCurrency": "INR",
+                    "availability": "https://schema.org/InStock"
+                  }
+                }
+              ]
+            },
+            {
+              "@type": "MenuSection",
+              "name": "Clay Oven Tandoor",
+              "description": "Charcoal-roasted kebabs & platters",
+              "hasMenuItem": [
+                {
+                  "@type": "MenuItem",
+                  "@id": "https://hotandspicybansberia.in/#menu-item-bm-5",
+                  "name": "Tandoor Delight Combo",
+                  "description": "6 pcs chicken or paneer tikka, 2 butter naan, mint dip & 2 drinks.",
+                  "image": "https://hotandspicybansberia.in/api/images/transform?src=src/assets/images/menu_tandoori_tikka_1794548029028.jpg&w=640&format=jpeg",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "449",
+                    "priceCurrency": "INR",
+                    "availability": "https://schema.org/InStock"
+                  }
+                },
+                {
+                  "@type": "MenuItem",
+                  "@id": "https://hotandspicybansberia.in/#menu-item-bm-6",
+                  "name": "Murgh Tandoori (Half)",
+                  "description": "Overnight marinated chicken roasted over glowing charcoal.",
+                  "image": "https://hotandspicybansberia.in/api/images/transform?src=src/assets/images/menu_tandoori_tikka_1794548029028.jpg&w=640&format=jpeg",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "280",
+                    "priceCurrency": "INR",
+                    "availability": "https://schema.org/InStock"
+                  }
+                },
+                {
+                  "@type": "MenuItem",
+                  "@id": "https://hotandspicybansberia.in/#menu-item-bm-7",
+                  "name": "Paneer Malai Tikka",
+                  "description": "Soft cottage cheese infused with green cardamom and velvety cream.",
+                  "image": "https://hotandspicybansberia.in/api/images/transform?src=src/assets/images/menu_tandoori_tikka_1794548029028.jpg&w=640&format=jpeg",
+                  "suitableForDiet": "https://schema.org/VegetarianDiet",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "240",
+                    "priceCurrency": "INR",
+                    "availability": "https://schema.org/InStock"
+                  }
+                }
+              ]
+            },
+            {
+              "@type": "MenuSection",
+              "name": "Artisan Pizzas",
+              "description": "Stone-baked 10\" thin-crust pies",
+              "hasMenuItem": [
+                {
+                  "@type": "MenuItem",
+                  "@id": "https://hotandspicybansberia.in/#menu-item-bm-9",
+                  "name": "Luxury Pizza Combo",
+                  "description": "10\" thin-crust pizza, 4 pcs herb garlic bread & 2 chilled drinks.",
+                  "image": "https://hotandspicybansberia.in/api/images/transform?src=src/assets/images/menu_artisan_pizza_1794548027765.jpg&w=640&format=jpeg",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "499",
+                    "priceCurrency": "INR",
+                    "availability": "https://schema.org/InStock"
+                  }
+                },
+                {
+                  "@type": "MenuItem",
+                  "@id": "https://hotandspicybansberia.in/#menu-item-bm-10",
+                  "name": "Peri-Peri Chicken Pizza",
+                  "description": "Chargrilled chicken, red paprika, basil, and bubbling mozzarella.",
+                  "image": "https://hotandspicybansberia.in/api/images/transform?src=src/assets/images/menu_artisan_pizza_1794548027765.jpg&w=640&format=jpeg",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "360",
+                    "priceCurrency": "INR",
+                    "availability": "https://schema.org/InStock"
+                  }
+                },
+                {
+                  "@type": "MenuItem",
+                  "@id": "https://hotandspicybansberia.in/#menu-item-bm-11",
+                  "name": "Mushroom & Mozzarella",
+                  "description": "Pan-seared mushrooms, roasted garlic, olive oil, and fresh basil.",
+                  "image": "https://hotandspicybansberia.in/api/images/transform?src=src/assets/images/menu_artisan_pizza_1794548027765.jpg&w=640&format=jpeg",
+                  "suitableForDiet": "https://schema.org/VegetarianDiet",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "330",
+                    "priceCurrency": "INR",
+                    "availability": "https://schema.org/InStock"
+                  }
+                }
+              ]
+            },
+            {
+              "@type": "MenuSection",
+              "name": "Loaded Burgers",
+              "description": "Toasted brioche & crispy chicken",
+              "hasMenuItem": [
+                {
+                  "@type": "MenuItem",
+                  "@id": "https://hotandspicybansberia.in/#menu-item-bm-13",
+                  "name": "Gourmet Burger Combo",
+                  "description": "Double-patty brioche burger, crinkle-cut fries & chilled drink.",
+                  "image": "https://hotandspicybansberia.in/api/images/transform?src=src/assets/images/menu_loaded_burger_1794548027906.jpg&w=640&format=jpeg",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "349",
+                    "priceCurrency": "INR",
+                    "availability": "https://schema.org/InStock"
+                  }
+                },
+                {
+                  "@type": "MenuItem",
+                  "@id": "https://hotandspicybansberia.in/#menu-item-bm-14",
+                  "name": "Hot & Spicy Beast Burger",
+                  "description": "Crispy fried thigh fillet, molten cheddar & habanero BBQ glaze.",
+                  "image": "https://hotandspicybansberia.in/api/images/transform?src=src/assets/images/menu_loaded_burger_1794548027906.jpg&w=640&format=jpeg",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "220",
+                    "priceCurrency": "INR",
+                    "availability": "https://schema.org/InStock"
+                  }
+                },
+                {
+                  "@type": "MenuItem",
+                  "@id": "https://hotandspicybansberia.in/#menu-item-bm-15",
+                  "name": "Smoked Crispy Paneer Burger",
+                  "description": "Golden crumb-fried cottage cheese steak with chipotle aioli.",
+                  "image": "https://hotandspicybansberia.in/api/images/transform?src=src/assets/images/menu_loaded_burger_1794548027906.jpg&w=640&format=jpeg",
+                  "suitableForDiet": "https://schema.org/VegetarianDiet",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "190",
+                    "priceCurrency": "INR",
+                    "availability": "https://schema.org/InStock"
+                  }
+                }
+              ]
+            },
+            {
+              "@type": "MenuSection",
+              "name": "Wok & Kathi Rolls",
+              "description": "High-flame street classics",
+              "hasMenuItem": [
+                {
+                  "@type": "MenuItem",
+                  "@id": "https://hotandspicybansberia.in/#menu-item-bm-17",
+                  "name": "Chowmein & Roll Combo",
+                  "description": "Wok-tossed Hakka chowmein paired with a flaky kathi roll & drink.",
+                  "image": "https://hotandspicybansberia.in/api/images/transform?src=src/assets/images/menu_hakka_noodles_1794548028123.jpg&w=640&format=jpeg",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "279",
+                    "priceCurrency": "INR",
+                    "availability": "https://schema.org/InStock"
+                  }
+                },
+                {
+                  "@type": "MenuItem",
+                  "@id": "https://hotandspicybansberia.in/#menu-item-bm-18",
+                  "name": "Schezwan Hakka Noodles",
+                  "description": "Thin noodles tossed with shredded chicken, peppers & spring onion.",
+                  "image": "https://hotandspicybansberia.in/api/images/transform?src=src/assets/images/menu_hakka_noodles_1794548028123.jpg&w=640&format=jpeg",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "210",
+                    "priceCurrency": "INR",
+                    "availability": "https://schema.org/InStock"
+                  }
+                },
+                {
+                  "@type": "MenuItem",
+                  "@id": "https://hotandspicybansberia.in/#menu-item-bm-19",
+                  "name": "Double Egg Chicken Roll",
+                  "description": "Flaky laccha paratha layered with egg, tikka chicken & lime.",
+                  "image": "https://hotandspicybansberia.in/api/images/transform?src=src/assets/images/menu_hakka_noodles_1794548028123.jpg&w=640&format=jpeg",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "160",
+                    "priceCurrency": "INR",
+                    "availability": "https://schema.org/InStock"
+                  }
+                }
+              ]
+            },
+            {
+              "@type": "MenuSection",
+              "name": "Cafe & Coolers",
+              "description": "Iced brews, shakes & mojitos",
+              "hasMenuItem": [
+                {
+                  "@type": "MenuItem",
+                  "@id": "https://hotandspicybansberia.in/#menu-item-bm-21",
+                  "name": "Hazelnut Mocha Frappe",
+                  "description": "Chilled espresso blended with roasted hazelnut and dark cocoa.",
+                  "image": "https://hotandspicybansberia.in/api/images/transform?src=src/assets/images/menu_cafe_frappe_1794548027702.jpg&w=640&format=jpeg",
+                  "suitableForDiet": "https://schema.org/VegetarianDiet",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "160",
+                    "priceCurrency": "INR",
+                    "availability": "https://schema.org/InStock"
+                  }
+                },
+                {
+                  "@type": "MenuItem",
+                  "@id": "https://hotandspicybansberia.in/#menu-item-bm-22",
+                  "name": "Fresh Mint Virgin Mojito",
+                  "description": "Muddled garden mint leaves, fresh lime, crushed ice & club soda.",
+                  "image": "https://hotandspicybansberia.in/api/images/transform?src=src/assets/images/menu_cafe_frappe_1794548027702.jpg&w=640&format=jpeg",
+                  "suitableForDiet": "https://schema.org/VegetarianDiet",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "140",
+                    "priceCurrency": "INR",
+                    "availability": "https://schema.org/InStock"
+                  }
+                },
+                {
+                  "@type": "MenuItem",
+                  "@id": "https://hotandspicybansberia.in/#menu-item-bm-23",
+                  "name": "Belgian Dark Thickshake",
+                  "description": "Slow-churned Belgian chocolate gelato topped with cocoa curls.",
+                  "image": "https://hotandspicybansberia.in/api/images/transform?src=src/assets/images/menu_cafe_frappe_1794548027702.jpg&w=640&format=jpeg",
+                  "suitableForDiet": "https://schema.org/VegetarianDiet",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "180",
+                    "priceCurrency": "INR",
+                    "availability": "https://schema.org/InStock"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      }
+    </script>
+
+    <!-- Dynamic Canonical & Social URL Sync + Theme Init -->
+    <script>
+      (function () {
+        try {
+          var origin = window.location.origin;
+          var pathname = window.location.pathname === '/index.html' ? '/' : (window.location.pathname || '/');
+          var canonicalUrl = origin + pathname;
+
+          var canonicalLink = document.querySelector('link[rel="canonical"]');
+          if (canonicalLink) canonicalLink.setAttribute('href', canonicalUrl);
+
+          var ogUrl = document.querySelector('meta[property="og:url"]');
+          if (ogUrl) ogUrl.setAttribute('content', canonicalUrl);
+
+          var ogImgs = document.querySelectorAll('meta[property="og:image"], meta[property="og:image:secure_url"]');
+          for (var i = 0; i < ogImgs.length; i++) {
+            var current = ogImgs[i].getAttribute('content') || '';
+            var asset = current.indexOf('og-lounge.jpg') !== -1 ? '/og-lounge.jpg' : '/og-share.jpg';
+            ogImgs[i].setAttribute('content', origin + asset);
+          }
+
+          var twImg = document.querySelector('meta[name="twitter:image"]');
+          if (twImg) twImg.setAttribute('content', origin + '/og-share.jpg');
+
+          var schemaEl = document.getElementById('hs-restaurant-schema');
+          if (schemaEl && schemaEl.textContent) {
+            var baseHost = 'https://hotandspicybansberia.in';
+            var rewriteUrls = function (node) {
+              if (typeof node === 'string') {
+                return node.indexOf(baseHost) === 0 ? origin + node.slice(baseHost.length) : node;
+              }
+              if (Array.isArray(node)) {
+                return node.map(rewriteUrls);
+              }
+              if (node && typeof node === 'object') {
+                var out = {};
+                var keys = Object.keys(node);
+                for (var k = 0; k < keys.length; k++) {
+                  out[keys[k]] = rewriteUrls(node[keys[k]]);
+                }
+                return out;
+              }
+              return node;
+            };
+            schemaEl.textContent = JSON.stringify(rewriteUrls(JSON.parse(schemaEl.textContent)));
+          }
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body class="bg-[#E4D6C3] dark:bg-[#120E0A] text-[#14100B] dark:text-[#F0E6D8] antialiased selection:bg-[rgba(141,102,19,0.2)] selection:text-[#14100B] dark:selection:text-[#F0E6D8]">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

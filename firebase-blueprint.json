@@ -1,0 +1,92 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "Registered customer profile with contact information and preferences",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "maxLength": 128 },
+        "name": { "type": "string", "maxLength": 100 },
+        "email": { "type": "string", "maxLength": 120 },
+        "phone": { "type": "string", "maxLength": 20 },
+        "phoneVerified": { "type": "boolean" },
+        "authProvider": { "type": "string", "enum": ["email", "phone", "google"] },
+        "address": { "type": "string", "maxLength": 250 },
+        "is18Plus": { "type": "boolean" },
+        "dietaryPreference": {
+          "type": "string",
+          "enum": ["all", "veg", "non-veg"],
+          "description": "User's global menu dietary filter preference"
+        },
+        "loyaltyPoints": { "type": "number", "description": "Current available loyalty point balance calculated from order history" },
+        "earnedPoints": { "type": "number", "description": "Lifetime points earned from non-cancelled orders" },
+        "spentPoints": { "type": "number", "description": "Total points redeemed for reward vouchers" },
+        "loyaltyTier": { "type": "string", "maxLength": 40, "description": "Current loyalty tier name" },
+        "loyaltyUpdatedAt": { "type": "string", "maxLength": 50, "description": "ISO timestamp of last loyalty calculation" },
+        "createdAt": { "type": "string", "maxLength": 50 },
+        "lastLoginAt": { "type": "string", "maxLength": 50 }
+      },
+      "required": ["uid", "name", "email"]
+    },
+    "Booking": {
+      "title": "Booking",
+      "description": "Table or gaming slot reservation request",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "userId": { "type": "string", "maxLength": 128 },
+        "name": { "type": "string", "maxLength": 100 },
+        "phone": { "type": "string", "maxLength": 20 },
+        "address": { "type": "string", "maxLength": 250 },
+        "bookingType": { "type": "string", "enum": ["dining", "ps5", "pool", "combo_deal"] },
+        "poolDuration": { "type": "string", "enum": ["15min", "30min"] },
+        "date": { "type": "string", "maxLength": 20 },
+        "timeSlot": { "type": "string", "maxLength": 20 },
+        "guests": { "type": "number" },
+        "specialRequests": { "type": "string", "maxLength": 300 },
+        "voucherCode": { "type": "string", "maxLength": 40 },
+        "discountAmount": { "type": "number" },
+        "rewardTitle": { "type": "string", "maxLength": 120 },
+        "status": { "type": "string", "enum": ["Confirmed", "Completed", "Cancelled"] },
+        "is18Confirmed": { "type": "boolean" },
+        "createdAt": { "type": "string", "maxLength": 50 }
+      },
+      "required": ["name", "phone", "bookingType", "date", "timeSlot", "is18Confirmed"]
+    },
+    "Order": {
+      "title": "Order",
+      "description": "Customer food combo and menu order placed via Website or WhatsApp",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "userId": { "type": "string", "maxLength": 128 },
+        "customerEmail": { "type": "string", "maxLength": 120 },
+        "customerName": { "type": "string", "maxLength": 100 },
+        "phone": { "type": "string", "maxLength": 20 },
+        "address": { "type": "string", "maxLength": 250 },
+        "diningMode": { "type": "string", "enum": ["dine-in", "takeaway"] },
+        "itemsSummary": { "type": "string", "maxLength": 2000 },
+        "subtotal": { "type": "number" },
+        "status": { "type": "string", "enum": ["Pending", "Preparing", "Ready", "Completed", "Delivered", "Cancelled"] },
+        "is18Confirmed": { "type": "boolean" },
+        "createdAt": { "type": "string", "maxLength": 50 },
+        "updatedAt": { "type": "string", "maxLength": 50 }
+      },
+      "required": ["customerName", "phone", "address", "subtotal", "status", "is18Confirmed"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/UserProfile" },
+      "description": "User profile document containing persistent user info and saved address"
+    },
+    "/bookings/{bookingId}": {
+      "schema": { "$ref": "#/entities/Booking" },
+      "description": "Reservation records for dining tables and gaming arena slots"
+    },
+    "/orders/{orderId}": {
+      "schema": { "$ref": "#/entities/Order" },
+      "description": "Order records for combo meals and a la carte favorites"
+    }
+  }
+}

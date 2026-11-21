@@ -1,0 +1,171 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Global default deny catch-all
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() > 0 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    function isAdminUser() {
+      return isSignedIn()
+        && request.auth.token.email == 'smdasif665@gmail.com'
+        && request.auth.token.email_verified == true;
+    }
+
+    function isValidUserProfile(data) {
+      return data.keys().hasAll(['uid', 'name', 'email'])
+        && data.keys().hasOnly([
+          'uid', 'name', 'email', 'phone', 'phoneVerified', 'authProvider',
+          'address', 'is18Plus', 'dietaryPreference', 'loyaltyPoints', 'earnedPoints',
+          'spentPoints', 'loyaltyTier', 'loyaltyUpdatedAt', 'createdAt', 'lastLoginAt'
+        ])
+        && data.uid is string && data.uid.size() > 0 && data.uid.size() <= 128
+        && data.name is string && data.name.size() > 0 && data.name.size() <= 100
+        && data.email is string && data.email.size() <= 120
+        && (!('phone' in data) || (data.phone is string && data.phone.size() <= 20))
+        && (!('phoneVerified' in data) || data.phoneVerified is bool)
+        && (!('authProvider' in data) || data.authProvider in ['email', 'phone', 'google'])
+        && (!('address' in data) || (data.address is string && data.address.size() <= 250))
+        && (!('is18Plus' in data) || data.is18Plus is bool)
+        && (!('dietaryPreference' in data) || (data.dietaryPreference is string && data.dietaryPreference.size() <= 16 && data.dietaryPreference in ['all', 'veg', 'non-veg']))
+        && (!('loyaltyPoints' in data) || (data.loyaltyPoints is number && data.loyaltyPoints >= 0 && data.loyaltyPoints <= 10000000))
+        && (!('earnedPoints' in data) || (data.earnedPoints is number && data.earnedPoints >= 0 && data.earnedPoints <= 10000000))
+        && (!('spentPoints' in data) || (data.spentPoints is number && data.spentPoints >= 0 && data.spentPoints <= 10000000))
+        && (!('loyaltyTier' in data) || (data.loyaltyTier is string && data.loyaltyTier.size() <= 40))
+        && (!('loyaltyUpdatedAt' in data) || (data.loyaltyUpdatedAt is string && data.loyaltyUpdatedAt.size() <= 50))
+        && (!('createdAt' in data) || (data.createdAt is string && data.createdAt.size() <= 50))
+        && (!('lastLoginAt' in data) || (data.lastLoginAt is string && data.lastLoginAt.size() <= 50));
+    }
+
+    function isValidBooking(data) {
+      return data.keys().hasAll(['userId', 'name', 'phone', 'bookingType', 'date', 'timeSlot', 'is18Confirmed'])
+        && data.keys().hasOnly([
+          'id', 'userId', 'name', 'phone', 'address', 'bookingType',
+          'poolDuration', 'date', 'timeSlot', 'guests', 'specialRequests',
+          'voucherCode', 'discountAmount', 'rewardTitle', 'status',
+          'is18Confirmed', 'createdAt'
+        ])
+        && data.userId is string && data.userId.size() > 0 && data.userId.size() <= 128
+        && (!('id' in data) || (data.id is string && data.id.size() > 0 && data.id.size() <= 128))
+        && data.name is string && data.name.size() > 0 && data.name.size() <= 100
+        && data.phone is string && data.phone.size() > 0 && data.phone.size() <= 20
+        && (!('address' in data) || (data.address is string && data.address.size() <= 250))
+        && data.bookingType in ['dining', 'ps5', 'pool', 'combo_deal']
+        && (!('poolDuration' in data) || data.poolDuration in ['15min', '30min'])
+        && data.date is string && data.date.size() > 0 && data.date.size() <= 20
+        && data.timeSlot is string && data.timeSlot.size() > 0 && data.timeSlot.size() <= 20
+        && data.is18Confirmed == true
+        && (!('guests' in data) || (data.guests is number && data.guests >= 1 && data.guests <= 30))
+        && (!('specialRequests' in data) || (data.specialRequests is string && data.specialRequests.size() <= 300))
+        && (!('voucherCode' in data) || (data.voucherCode is string && data.voucherCode.size() <= 40))
+        && (!('discountAmount' in data) || (data.discountAmount is number && data.discountAmount >= 0 && data.discountAmount <= 50000))
+        && (!('rewardTitle' in data) || (data.rewardTitle is string && data.rewardTitle.size() <= 120))
+        && (!('status' in data) || data.status in ['Confirmed', 'Completed', 'Cancelled'])
+        && (!('createdAt' in data) || (data.createdAt is string && data.createdAt.size() <= 50));
+    }
+
+    function isValidOrder(data) {
+      return data.keys().hasAll(['userId', 'customerName', 'phone', 'address', 'subtotal', 'status', 'is18Confirmed'])
+        && data.keys().hasOnly([
+          'id', 'userId', 'customerEmail', 'customerName', 'phone',
+          'address', 'diningMode', 'itemsSummary', 'subtotal', 'status',
+          'is18Confirmed', 'createdAt', 'updatedAt'
+        ])
+        && (!('id' in data) || (data.id is string && data.id.size() > 0 && data.id.size() <= 128))
+        && data.userId is string && data.userId.size() > 0 && data.userId.size() <= 128
+        && (!('customerEmail' in data) || (data.customerEmail is string && data.customerEmail.size() <= 120))
+        && data.customerName is string && data.customerName.size() > 0 && data.customerName.size() <= 100
+        && data.phone is string && data.phone.size() > 0 && data.phone.size() <= 20
+        && data.address is string && data.address.size() > 0 && data.address.size() <= 250
+        && (!('diningMode' in data) || data.diningMode in ['dine-in', 'takeaway'])
+        && (!('itemsSummary' in data) || (data.itemsSummary is string && data.itemsSummary.size() <= 2000))
+        && data.subtotal is number && data.subtotal >= 0 && data.subtotal <= 500000
+        && data.status in ['Pending', 'Preparing', 'Ready', 'Completed', 'Delivered', 'Cancelled']
+        && data.is18Confirmed == true
+        && (!('createdAt' in data) || (data.createdAt is string && data.createdAt.size() <= 50))
+        && (!('updatedAt' in data) || (data.updatedAt is string && data.updatedAt.size() <= 50));
+    }
+
+    // Users Collection: strictly owner-only read & write isolation
+    match /users/{userId} {
+      allow get: if isValidId(userId) && (isOwner(userId) || isAdminUser());
+      allow create: if isValidId(userId)
+        && isOwner(userId)
+        && isValidUserProfile(incoming())
+        && incoming().uid == userId;
+      allow update: if isValidId(userId)
+        && isOwner(userId)
+        && isValidUserProfile(incoming())
+        && incoming().uid == existing().uid
+        && incoming().diff(existing()).affectedKeys().hasOnly([
+          'name', 'email', 'phone', 'phoneVerified', 'authProvider',
+          'address', 'is18Plus', 'dietaryPreference', 'loyaltyPoints', 'earnedPoints',
+          'spentPoints', 'loyaltyTier', 'loyaltyUpdatedAt', 'createdAt', 'lastLoginAt'
+        ]);
+      allow delete: if isValidId(userId) && isOwner(userId);
+    }
+
+    // Bookings Collection: strictly owner-only read, create, cancellation update, and delete
+    match /bookings/{bookingId} {
+      allow get: if isValidId(bookingId) && isSignedIn() && (existing().userId == request.auth.uid || isAdminUser());
+      allow list: if isSignedIn() && (existing().userId == request.auth.uid || isAdminUser());
+      allow create: if isValidId(bookingId)
+        && isSignedIn()
+        && isValidBooking(incoming())
+        && incoming().userId == request.auth.uid;
+      allow update: if isValidId(bookingId)
+        && isSignedIn()
+        && isValidBooking(incoming())
+        && (
+          isAdminUser()
+          || (
+            existing().userId == request.auth.uid
+            && incoming().userId == existing().userId
+            && (!('status' in existing()) || existing().status == 'Confirmed')
+            && incoming().status == 'Cancelled'
+            && incoming().diff(existing()).affectedKeys().hasOnly(['status'])
+          )
+        );
+      allow delete: if isValidId(bookingId)
+        && isSignedIn()
+        && (existing().userId == request.auth.uid || isAdminUser());
+    }
+
+    // Orders Collection: strictly owner-only read/create, owner/admin status updates
+    match /orders/{orderId} {
+      allow get: if isValidId(orderId) && isSignedIn() && (existing().userId == request.auth.uid || isAdminUser());
+      allow list: if isSignedIn() && (existing().userId == request.auth.uid || isAdminUser());
+      allow create: if isValidId(orderId)
+        && isSignedIn()
+        && isValidOrder(incoming())
+        && incoming().userId == request.auth.uid;
+      allow update: if isValidId(orderId)
+        && isSignedIn()
+        && (existing().userId == request.auth.uid || isAdminUser())
+        && isValidOrder(incoming())
+        && incoming().userId == existing().userId
+        && incoming().diff(existing()).affectedKeys().hasOnly(['status', 'updatedAt']);
+      allow delete: if false;
+    }
+  }
+}

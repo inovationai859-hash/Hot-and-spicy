@@ -1,0 +1,6 @@
+{
+  "name": "Hot & Spicy - Restaurant, Cafe & Gaming Lounge",
+  "description": "Premier dining, cafe culture, and gaming lounge featuring signature tandoori combos, gourmet pizzas, 8-ball pool, and 4K PS5 arenas in Bansberia, Hooghly.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
