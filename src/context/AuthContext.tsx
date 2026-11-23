@@ -10,11 +10,27 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from '../firebase';
+
+import { signInWithRedirect, getRedirectResult } from 'firebase/auth';
+
+async function parseJsonSafe(res: Response): Promise<any> {
+  try {
+    const text = await res.text();
+    if (!text || !text.trim()) return {};
+    return JSON.parse(text);
+  } catch {
+    return {};
+  }
+}
+
 import {
   calculateOrderPoints,
   calculateLoyaltyFromOrders,
   getLoyaltyTier,
 } from '../lib/loyalty';
+
+
+  
 import type {
   DietaryPreference,
   UserProfile,
